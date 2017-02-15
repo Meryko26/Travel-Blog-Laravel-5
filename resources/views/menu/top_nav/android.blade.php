@@ -15,7 +15,7 @@
 
 		    <p>
 		    	<strong>Download Here: </strong>
-		    	<a href="https://github.com/atabegruslan/AndroidApp-Laravel5-TravelBlog/blob/master/TravelBlog.apk?raw=true">Travel Blog APK</a>
+		    	<a href="http://ruslan-website.com/laravel/travel_blog/apk/TravelBlog.apk">Travel Blog APK</a>
 		    </p>		    
 	    </div>
 	        
