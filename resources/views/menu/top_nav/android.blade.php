@@ -10,7 +10,7 @@
     	<div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
 		    <p>
 		    	<strong>Usage and Documemtation: </strong>
-		    	<a href="https://github.com/atabegruslan/AndroidApp-Laravel5-TravelBlog">github.com/atabegruslan/AndroidApp-Laravel5-TravelBlog</a>
+		    	<a href="https://github.com/atabegruslan/Travel-Blog-Android">https://github.com/atabegruslan/Travel-Blog-Android</a>
 		    </p>
 
 		    <p>
@@ -20,7 +20,7 @@
 	    </div>
 	        
 	    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
-	        <img src="https://raw.githubusercontent.com/atabegruslan/AndroidApp-Laravel5-TravelBlog/master/Screenshot.png" class="img-responsive medium" alt="android app">
+	        <img src="https://raw.githubusercontent.com/atabegruslan/Travel-Blog-Android/master/Screenshot.png" class="img-responsive medium" alt="android app">
 	    </div>
 
     </div>
