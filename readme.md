@@ -2,13 +2,13 @@
 
 - Website http://ruslan-website.com/laravel/travel_blog/
 
-![](https://raw.githubusercontent.com/atabegruslan/Laravel5-CRUD-API-Android/master/Illustrations/Snapshot.PNG)
+![](https://raw.githubusercontent.com/atabegruslan/Travel-Blog-Laravel-5/master/Illustrations/Snapshot.PNG)
 
 ## Android App
 
-Download here: https://github.com/atabegruslan/AndroidApp-Laravel5-TravelBlog/blob/master/TravelBlog.apk?raw=true
+Download here: http://ruslan-website.com/laravel/travel_blog/apk/TravelBlog.apk
 
-Source code: https://github.com/atabegruslan/AndroidApp-Laravel5-TravelBlog
+Source code: https://github.com/atabegruslan/Travel-Blog-Android
 
 Use guest credentials to log in:
 
@@ -17,7 +17,7 @@ Use guest credentials to log in:
 | User email | guest@guest.com |
 | Password | gggggg |
 
-![](https://raw.githubusercontent.com/atabegruslan/AndroidApp-Laravel5-TravelBlog/master/Screenshot.png)
+![](https://raw.githubusercontent.com/atabegruslan/Travel-Blog-Android/master/Screenshot.png)
 
 ## API
 
@@ -98,7 +98,7 @@ Make route, controller and model for user: `php artisan make:auth`
 
 ## Customize flow of app to the following diagram
 
-![](https://raw.githubusercontent.com/atabegruslan/Laravel5-CRUD-API-Android/master/Illustrations/flow.PNG)
+![](https://raw.githubusercontent.com/atabegruslan/Travel-Blog-Laravel-5/master/Illustrations/flow.PNG)
 
 New Controller for Entry: `php artisan make:controller EntryController --resource`
 
@@ -139,7 +139,7 @@ Delete home controller, view and route
 
 Make new database table like below:
 
-![](https://raw.githubusercontent.com/atabegruslan/Laravel5-CRUD-API-Android/master/Illustrations/db.PNG)
+![](https://raw.githubusercontent.com/atabegruslan/Travel-Blog-Laravel-5/master/Illustrations/db.PNG)
 
 ## Text and Image MultiPart Upload Form
 
