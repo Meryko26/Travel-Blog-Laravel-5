@@ -17,6 +17,12 @@ td{
 h1 {
     text-align: center;
 }
+#facebook_login a{
+    margin-top:20px;
+}
+#facebook_login a img{
+    width:100%;
+}
 
 .dropbtn {
     color: white;

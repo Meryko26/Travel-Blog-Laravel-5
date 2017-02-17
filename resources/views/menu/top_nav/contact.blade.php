@@ -22,16 +22,16 @@
 	</div>
 
 	<div class="form-group">
-	    {!! Form::label('Your E-mail Address') !!}
+	    {!! Form::label('Your Email Address') !!}
 	    {!! Form::text('email', null, 
 	        array('required', 
 	              'class'=>'form-control', 
-	              'placeholder'=>'Your e-mail address')) !!}
+	              'placeholder'=>'Your Email Address')) !!}
 	</div>
 
 	<div class="form-group">
 	    {!! Form::label('Your Email Subject') !!}
-	    {!! Form::text('subject', null, 
+	    {!! Form::text('subject', Auth::user()->email, 
 	        array('required', 
 	              'class'=>'form-control', 
 	              'placeholder'=>'Your Email Subject')) !!}

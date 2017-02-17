@@ -26,4 +26,7 @@ Route::group(['middleware' => ['web']], function(){
 	Route::get('/contact', 'PageController@contact');
 
 	Route::post('/email', 'EmailController@send');
+
+	Route::get('auth/{provider}', ['uses' => 'Auth\AuthController@redirectToProvider', 'as' => 'social.login']);
+	Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
 });

@@ -241,6 +241,94 @@ Good Tutorials:
 - https://tutorialedge.net/laravel-5-simple-site-search-bar
 - http://anytch.com/laravel-5-simple-get-search/
 
+## Facebook Login (Socialite)
+
+In Facebook Developer Console:
+
+![]()
+
+![]()
+
+In config/services.php
+
+```php
+'facebook' => [
+    'client_id' => env('***'),
+    'client_secret' => env('***'),
+    'redirect' => env('***'),
+]
+```
+
+In CLI : `composer require laravel/socialite`
+
+In config/app.php
+
+```php
+'providers' => [
+	Laravel\Socialite\SocialiteServiceProvider::class,
+],
+'aliases' => [
+	'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+],
+```
+
+Add new columns in database's users table for social login
+
+![]()
+
+In app/User.php model
+
+```php
+class User extends Authenticatable{
+...
+    protected $fillable = [
+        'name', 'email', 'password', 'type', 'social_id'
+    ];
+```
+
+Add Facebook button to resources/views/auth/login.blade.php
+
+```html
+<a href="{{ route('social.login', ['facebook']) }}"">
+    <img src="fb.png">
+</a> 
+```
+
+In routes.web.php
+
+```php
+Route::group(['middleware' => ['web']], function(){
+	Route::get('auth/{provider}', ['uses' => 'Auth\AuthController@redirectToProvider', 'as' => 'social.login']);
+	Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
+});
+```
+
+In App/Http/Controllers/Auth/AuthController.php
+
+```php
+public function redirectToProvider()
+{
+	return Socialite::driver('facebook')->redirect();
+}
+public function handleProviderCallback()
+{
+	$user = Socialite::driver('facebook')->user();
+	$data = [
+        'name' => $user->getName(),
+        'email' => $user->getEmail(),
+        'type' => 'facebook',
+        'social_id' => $user->getId(),
+        'password' => ''
+    ];
+    Auth::login(User::firstOrCreate($data));
+    return Redirect::to('/entry');
+}
+```
+
+## Contact form with emailing ability
+
+
+
 ## Upload to server
 
 - public folder to server's public folder

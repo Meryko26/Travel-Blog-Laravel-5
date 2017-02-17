@@ -66,5 +66,8 @@
             </div>
         </form>
     </div>
+
+    @include('parts/_social_login')
+
 </div>
 @endsection

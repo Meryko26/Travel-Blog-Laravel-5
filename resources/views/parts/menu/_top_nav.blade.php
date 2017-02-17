@@ -19,7 +19,7 @@
 		<li id="auth">
             @if (Auth::guest())
 				<div class="dropdown">
-					<button class="dropbtn btn btn-link">Account</button>
+					<button class="dropbtn btn btn-link">Login</button>
 					<div class="dropdown-content">
 						<a href="{{ route('register') }}">Register</a>
 						<a href="{{ route('login') }}">Login</a>
