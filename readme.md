@@ -245,9 +245,9 @@ Good Tutorials:
 
 In Facebook Developer Console:
 
-![]()
+![](https://raw.githubusercontent.com/atabegruslan/Travel-Blog-Laravel-5/master/Illustrations/fb_dev_con_1.PNG)
 
-![]()
+![](https://raw.githubusercontent.com/atabegruslan/Travel-Blog-Laravel-5/master/Illustrations/fb_dev_con_2.PNG)
 
 In config/services.php
 
@@ -274,7 +274,7 @@ In config/app.php
 
 Add new columns in database's users table for social login
 
-![]()
+![](https://raw.githubusercontent.com/atabegruslan/Travel-Blog-Laravel-5/master/Illustrations/new_social_db_cols.PNG)
 
 In app/User.php model
 
@@ -289,7 +289,7 @@ class User extends Authenticatable{
 Add Facebook button to resources/views/auth/login.blade.php
 
 ```html
-<a href="{{ route('social.login', ['facebook']) }}"">
+<a href="{{ route('social.login', ['facebook']) }}">
     <img src="fb.png">
 </a> 
 ```
@@ -324,6 +324,14 @@ public function handleProviderCallback()
     return Redirect::to('/entry');
 }
 ```
+
+Useful tutorials:
+
+https://github.com/laravel/socialite
+
+https://www.youtube.com/watch?v=D3oLLz8bFp0
+
+http://devartisans.com/articles/complete-laravel5-socialite-tuorial
 
 ## Contact form with emailing ability
 
