@@ -12,13 +12,13 @@ use Illuminate\Http\RedirectResponse;
 
 class AuthController extends Controller
 {
-    public function redirectToProvider()
+    public function redirectToProvider($provider)
     {
-    	return Socialite::driver('facebook')->redirect();
+    	return Socialite::driver($provider)->redirect();
     }
-    public function handleProviderCallback()
+    public function handleProviderCallback($provider)
     {
-    	$user = Socialite::driver('facebook')->user();
+    	$user = Socialite::driver($provider)->user();
 
     	//dd($user);
     	/*
@@ -44,20 +44,11 @@ class AuthController extends Controller
 		}
     	*/
 
-		$token = $user->token;
-		//$refreshToken = $user->refreshToken; // not always provided
-		//$expiresIn = $user->expiresIn;
-		$facebook_id = $user->getId();
-		//$user->getNickname();
-		$facebook_username = $user->getName();
-		$facebook_email = $user->getEmail();
-		//$user->getAvatar();
-
 		$data = [
-            'name' => $facebook_username,
-            'email' => $facebook_email,
-            'type' => 'facebook',
-            'social_id' => $facebook_id,
+            'name' => $user->getName(),
+            'email' => $user->getEmail(),
+            'type' => $provider,
+            'social_id' => $user->getId(),
             'password' => ''
         ];
      

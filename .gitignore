@@ -5,6 +5,7 @@
 /vendor
 /.idea
 /apk
+/google
 Homestead.json
 Homestead.yaml
 .env

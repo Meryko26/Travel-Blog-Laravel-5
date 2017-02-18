@@ -9,6 +9,7 @@
     <link rel="icon" href="{{ PUB_URL }}favicon.ico">
     <link href="{{ PUB_URL }}css/app.css?v={{ rand() }}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
+    
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
