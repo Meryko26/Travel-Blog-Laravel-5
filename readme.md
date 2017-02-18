@@ -241,7 +241,7 @@ Good Tutorials:
 - https://tutorialedge.net/laravel-5-simple-site-search-bar
 - http://anytch.com/laravel-5-simple-get-search/
 
-## Facebook Login (Socialite)
+## Social Login (Socialite)
 
 In Facebook Developer Console:
 
@@ -249,14 +249,33 @@ In Facebook Developer Console:
 
 ![](https://raw.githubusercontent.com/atabegruslan/Travel-Blog-Laravel-5/master/Illustrations/fb_dev_con_2.PNG)
 
+The same idea applies for Google or any social developers' console.
+
+In .env
+
+```
+FACEBOOK_CLIENT_ID=
+FACEBOOK_CLIENT_SECRET=
+FACEBOOK_CALLBACK_URL=
+
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+GOOGLE_CALLBACK_URL=
+```
+
 In config/services.php
 
 ```php
 'facebook' => [
-    'client_id' => env('***'),
-    'client_secret' => env('***'),
-    'redirect' => env('***'),
-]
+    'client_id' => env('FACEBOOK_CLIENT_ID'),
+    'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+    'redirect' => env('FACEBOOK_CALLBACK_URL'),
+],
+'google' => [
+    'client_id' => env('GOOGLE_CLIENT_ID'),
+    'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+    'redirect' => env('GOOGLE_CALLBACK_URL'),
+],
 ```
 
 In CLI : `composer require laravel/socialite`
@@ -290,7 +309,10 @@ Add Facebook button to resources/views/auth/login.blade.php
 
 ```html
 <a href="{{ route('social.login', ['facebook']) }}">
-    <img src="fb.png">
+    <img src="btn_facebook.png">
+</a> 
+<a href="{{ route('social.login', ['google']) }}">
+    <img src="btn_google.png">
 </a> 
 ```
 
