@@ -306,17 +306,17 @@ Route::group(['middleware' => ['web']], function(){
 In App/Http/Controllers/Auth/AuthController.php
 
 ```php
-public function redirectToProvider()
+public function redirectToProvider($provider)
 {
-	return Socialite::driver('facebook')->redirect();
+	return Socialite::driver($provider)->redirect();
 }
-public function handleProviderCallback()
+public function handleProviderCallback($provider)
 {
-	$user = Socialite::driver('facebook')->user();
+	$user = Socialite::driver($provider)->user();
 	$data = [
         'name' => $user->getName(),
         'email' => $user->getEmail(),
-        'type' => 'facebook',
+        'type' => $provider,
         'social_id' => $user->getId(),
         'password' => ''
     ];
