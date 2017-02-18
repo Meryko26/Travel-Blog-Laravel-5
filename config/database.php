@@ -1,7 +1,17 @@
 <?php
 
 /*SECRET*/
-
+switch ($_SERVER['HTTP_HOST']) {
+    case 'localhost':
+        define("DB_NAME", env('DEVELOPMENT_DB_NAME'));
+        define("DB_UN", env('DEVELOPMENT_DB_USERNAME'));
+        define("DB_PW", env('DEVELOPMENT_DB_PASSWORD'));
+        break;
+    default:
+        define("DB_NAME", env('PRODUCTION_DB_NAME'));
+        define("DB_UN", env('PRODUCTION_DB_USERNAME'));
+        define("DB_PW", env('PRODUCTION_DB_PASSWORD'));
+}
 
 return [
 

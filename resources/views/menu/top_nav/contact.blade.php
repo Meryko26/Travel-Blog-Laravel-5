@@ -15,7 +15,7 @@
 
 	<div class="form-group">
 	    {!! Form::label('Your Name') !!}
-	    {!! Form::text('name', null, 
+	    {!! Form::text('name', Auth::user()->name,  
 	        array('required', 
 	              'class'=>'form-control', 
 	              'placeholder'=>'Your name')) !!}
@@ -23,7 +23,7 @@
 
 	<div class="form-group">
 	    {!! Form::label('Your Email Address') !!}
-	    {!! Form::text('email', null, 
+	    {!! Form::text('email', Auth::user()->email, 
 	        array('required', 
 	              'class'=>'form-control', 
 	              'placeholder'=>'Your Email Address')) !!}
@@ -31,7 +31,7 @@
 
 	<div class="form-group">
 	    {!! Form::label('Your Email Subject') !!}
-	    {!! Form::text('subject', Auth::user()->email, 
+	    {!! Form::text('subject', null, 
 	        array('required', 
 	              'class'=>'form-control', 
 	              'placeholder'=>'Your Email Subject')) !!}
@@ -39,7 +39,7 @@
 
 	<div class="form-group">
 	    {!! Form::label('Your Message') !!}
-	    {!! Form::textarea('message', null, 
+	    {!! Form::textarea('body', null, 
 	        array('required', 
 	              'class'=>'form-control', 
 	              'placeholder'=>'Your message')) !!}

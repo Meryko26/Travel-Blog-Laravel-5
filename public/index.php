@@ -10,8 +10,17 @@
 define("PAG", 10);
 define("IMG_RAD", 800);
 
-/*SECRET*/
-
+switch ($_SERVER['HTTP_HOST']) {
+    case 'localhost':
+        define("BTSP_DIR", "/travel_blog/bootstrap/");
+        define("PUB_URL", $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/travel_blog/public/');
+        define("IMG_DIR", $_SERVER['DOCUMENT_ROOT'].'/travel_blog/public/images/' );
+        break;
+    default:
+        define("BTSP_DIR", "/../travel_blog_base/bootstrap/");
+        define("PUB_URL", $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/laravel/travel_blog/');
+        define("IMG_DIR", $_SERVER['DOCUMENT_ROOT'].'/laravel/travel_blog/images' );
+}
 
 /*
 |--------------------------------------------------------------------------

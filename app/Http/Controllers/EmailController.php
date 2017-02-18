@@ -15,21 +15,31 @@ class EmailController extends Controller
             'name' => 'required|max:40',
             'email' => 'required|email|max:40',
             'subject' => 'required|max:40',
-            'message' => 'required|max:200'
+            'body' => 'required|max:200'
         ]); 
 
         $data = array(
 			'name' => $request->name,
-			'message' => $request->message
+			'email' => $request->email,
+			'subject' => $request->subject,
+			'body' => $request->body
         );
 
 		Mail::send(
-			'menu.top_nav.email',
+			'email.admin',
 			$data, 
 			function($message) use ($data) {
-				$message->from( $request->email );
-				$message->to('ruslan_aliyev_@hotmail.com', 'Admin');
-				$message->subject( $request->subject );
+				$message->from( $data['email'] );
+				$message->to('ruslan_aliyev_@hotmail.com')->subject( $data['body'] );
+			}
+		);
+
+		Mail::send(
+			'email.enquirer',
+			$data, 
+			function($message) use ($data) {
+				$message->from('ruslan_aliyev_@hotmail.com');
+				$message->to( $data['email'] )->subject( $data['body'] );
 			}
 		);
 

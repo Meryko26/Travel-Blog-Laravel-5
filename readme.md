@@ -357,7 +357,80 @@ http://devartisans.com/articles/complete-laravel5-socialite-tuorial
 
 ## Contact form with emailing ability
 
+In .env
 
+```
+MAIL_DRIVER=sendmail
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=465
+MAIL_USERNAME=***@gmail.com
+MAIL_PASSWORD=***
+MAIL_ENCRYPTION=ssl
+```
+
+Create contact form view, connect it to route then to controller.
+
+In controller:
+
+```php
+use Mail;
+
+class EmailController extends Controller
+{
+    public function send(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:40',
+            'email' => 'required|email|max:40',
+            'subject' => 'required|max:40',
+            'body' => 'required|max:200'
+        ]); 
+
+        $data = array(
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'body' => $request->body
+        );
+
+        Mail::send(
+            'email.admin',
+            $data, 
+            function($message) use ($data) {
+                $message->from( $data['email'] );
+                $message->to('ruslan_aliyev_@hotmail.com')->subject( $data['body'] );
+            }
+        );
+
+        Mail::send(
+            'email.enquirer',
+            $data, 
+            function($message) use ($data) {
+                $message->from('ruslan_aliyev_@hotmail.com');
+                $message->to( $data['email'] )->subject( $data['body'] );
+            }
+        );
+
+        \Session::flash('success', 'Email Sent');
+
+        return Redirect::to('/contact');
+    }
+}
+```
+
+In view, for HTML email template. Here I just show the HTML email that Admin receives:
+
+```html
+<p style="font-size: 100%;">Dear Administrator, You got new mail from Travel Blog</p>
+
+<p style="font-size: 160%; background-color: #F0F8FF;">
+{{ $body }}
+</p>
+
+<p style="font-size: 100%; background-color: #DCDCDC;">
+    <b>From:</b> {{ $name }} ( <a href="mailto:{{ $email }}">{{ $email }}</a> )<br>
+</p>
+```
 
 ## Upload to server
 
