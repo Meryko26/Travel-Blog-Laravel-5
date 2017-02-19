@@ -395,6 +395,22 @@ protected function credentials(Request $request)
 }
 ```
 
+For API Login:
+
+In vendor\laravel\passport\src\Bridge\UserRepository.php
+
+```php
+public function getUserEntityByUserCredentials($username, $password, $grantType, ClientEntityInterface $clientEntity)
+{
+    ...
+    if (method_exists($model, 'findForPassport')) {
+        $user = (new $model)->findForPassport($username);
+    } else {
+        // $user = (new $model)->where('email', $username)->first();
+        $user = (new $model)->where('email', $username)->where('type', 'normal')->first(); // Change here
+    }
+```
+
 Modify the app/User.php model too
 
 ```php
