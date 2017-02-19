@@ -295,7 +295,107 @@ Add new columns in database's users table for social login
 
 ![](https://raw.githubusercontent.com/atabegruslan/Travel-Blog-Laravel-5/master/Illustrations/new_social_db_cols.PNG)
 
-In app/User.php model
+Also make the email column not unique (above image). The existing code don't yet allow the same email address to be used for normal and social logins. To allow distinction between same emails of different login methods:
+
+For Login:
+
+In vendor\laravel\framework\src\Illuminate\Foundation\Auth\AuthenticatesUsers.php 
+
+```php
+protected function credentials(Request $request)
+{
+    //return $request->only($this->username(), 'password');
+    $request = $request->only($this->username(), 'password');
+    $request['type'] = 'normal';
+    return $request;
+}
+```
+
+For Register:
+
+In vendor\laravel\framework\src\Illuminate\Foundation\Auth\RegistersUsers.php 
+
+```php
+public function register(Request $request)
+{
+    $request['type'] = 'normal';  // add this line
+    $this->validator($request->all())->validate();
+```
+
+In app\Http\Controllers\Auth\RegisterController.php
+
+```php
+protected function validator(array $data)
+{
+    // return Validator::make($data, [
+    //     'name' => 'required|max:255',
+    //     'email' => 'required|email|max:255|unique:users',
+    //     'password' => 'required|min:6|confirmed',
+    // ]);
+    return Validator::make($data, [
+        'name' => 'required|max:255',
+        'email' => 'required|email|max:255|unique_with:users,type',
+        'password' => 'required|min:6|confirmed',
+        'type' => 'required',
+    ]);
+}
+```
+
+Notice that `unique_with` is used to allow composite key validation. 
+
+In CLI: `composer require felixkiss/uniquewith-validator`
+
+In config/app.php
+
+```php
+'providers' => [
+    ...
+    Felixkiss\UniqueWithValidator\ServiceProvider::class,
+],
+```
+
+More info about `unique_with` : https://github.com/felixkiss/uniquewith-validator
+
+For Forget Passwords:
+
+In vendor\laravel\framework\src\Illuminate\Foundation\Auth\SendsPasswordResetEmails.php
+
+```php
+public function sendResetLinkEmail(Request $request)
+{
+    $this->validate($request, ['email' => 'required|email']);
+
+    $request1 = $request->only('email'); // add this line
+    $request1['type'] = 'normal'; // add this line
+
+    $response = $this->broker()->sendResetLink(
+        //$request->only('email')
+        $request1 // add this line
+    );
+
+    return $response == Password::RESET_LINK_SENT
+                ? $this->sendResetLinkResponse($response)
+                : $this->sendResetLinkFailedResponse($request, $response);
+}
+```
+
+In vendor\laravel\framework\src\Illuminate\Foundation\Auth\ResetsPasswords.php
+
+```php
+protected function credentials(Request $request)
+{
+    $request = $request->only(
+        'email', 'password', 'password_confirmation', 'token'
+    );
+    $request['type'] = 'normal';
+    return $request;
+    // return $request->only(
+    //     'email', 'password', 'password_confirmation', 'token'
+    // );
+}
+```
+
+Modify the app/User.php model too
 
 ```php
 class User extends Authenticatable{
