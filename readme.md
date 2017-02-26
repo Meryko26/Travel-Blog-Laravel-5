@@ -21,7 +21,23 @@ Use guest credentials to log in:
 
 ## API
 
-- Get Token: POST `http://ruslan-website.com/laravel/travel_blog/oauth/token`
+For Register: Insert new user, get access token, get user data.
+
+For Social signins: Get social ID via 3rd party signin, insert new user, get access token, get user data.
+
+For Login: Get access token, get user data. 
+
+- Insert new user: POST `http://ruslan-website.com/laravel/travel_blog/api/user`
+
+| Post Form Data Name | Post Form Data Value |
+| --- | --- |
+| name | Name |
+| email | name@email.com |
+| password | abcdef |
+| type | 'normal' or 'facebook' or 'google' |
+| social_id | (optional) |
+
+- Get access token: POST `http://ruslan-website.com/laravel/travel_blog/oauth/token`
 
 | Post Form Data Name | Post Form Data Value |
 | --- | --- |
@@ -30,6 +46,7 @@ Use guest credentials to log in:
 | grant_type | password |
 | username | (user email) |
 | password | (user password) |
+| type | 'normal' or 'facebook' or 'google' |
 
 Return access token
 
@@ -42,7 +59,7 @@ Return access token
 
 Return user data
 
-- Get post entry: GET http://ruslan-website.com/laravel/travel_blog/api/entry
+- Get post entry: GET `http://ruslan-website.com/laravel/travel_blog/api/entry`
 
 | Header Field Name | Header Field Value |
 | --- | --- |
@@ -51,7 +68,7 @@ Return user data
 
 Return json entry(s)
 
-- Post new entry: POST http://ruslan-website.com/laravel/travel_blog/api/entry
+- Post new entry: POST `http://ruslan-website.com/laravel/travel_blog/api/entry`
 
 | Header Field Name | Header Field Value |
 | --- | --- |
@@ -397,17 +414,49 @@ protected function credentials(Request $request)
 
 For API Login:
 
+In vendor\league\oauth2-server\src\Grant\PasswordGrant.php
+
+```php
+protected function validateUser(ServerRequestInterface $request, ClientEntityInterface $client)
+{
+    ...
+    $type = $this->getRequestParameter('type', $request);
+
+    $user = $this->userRepository->getUserEntityByUserCredentials(
+        $username,
+        $password,
+        $type, // add this
+        $this->getIdentifier(),
+        $client
+    );
+```
+
+In vendor\league\oauth2-server\src\Repositories\UserRepositoryInterface.php
+
+```php
+interface UserRepositoryInterface extends RepositoryInterface
+{
+    public function getUserEntityByUserCredentials(
+        $username,
+        $password,
+        $type, // add this
+        $grantType,
+        ClientEntityInterface $clientEntity
+    );
+}
+```
+
 In vendor\laravel\passport\src\Bridge\UserRepository.php
 
 ```php
-public function getUserEntityByUserCredentials($username, $password, $grantType, ClientEntityInterface $clientEntity)
+public function getUserEntityByUserCredentials($username, $password, $type, $grantType, ClientEntityInterface $clientEntity)
 {
     ...
     if (method_exists($model, 'findForPassport')) {
         $user = (new $model)->findForPassport($username);
     } else {
         // $user = (new $model)->where('email', $username)->first();
-        $user = (new $model)->where('email', $username)->where('type', 'normal')->first(); // Change here
+        $user = (new $model)->where('email', $username)->where('type', $type)->first(); // add this
     }
 ```
 

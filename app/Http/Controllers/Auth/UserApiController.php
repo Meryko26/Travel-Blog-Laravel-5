@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
-use App\Entry;
+use App\Http\Controllers\Controller;
+use App\User;
 
 
 class UserApiController extends Controller
@@ -62,7 +63,6 @@ class UserApiController extends Controller
                 $user->name = $request->input('name');
                 $user->email = $request->input('email');
                 $user->password = bcrypt($request->input('password'));
-                $user->remember_token = $request->input('remember_token');
                 $user->type = $request->input('type');
                 $user->social_id = $request->input('social_id');            
                 $user->save();
@@ -72,6 +72,7 @@ class UserApiController extends Controller
                 ];
                 $statusCode = 200;
             }
+
         }catch(Exception $e)
         {
             $response = [

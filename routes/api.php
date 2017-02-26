@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:api')->resource('/entry', 'EntryApiController');
+
+Route::post('/user', 'Auth\UserApiController@store');
