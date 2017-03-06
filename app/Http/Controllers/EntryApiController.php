@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Entry;
 
-
 class EntryApiController extends Controller
 {
     /**
@@ -59,6 +58,8 @@ class EntryApiController extends Controller
             $entry->user_id = $request->input('user_id');
             $entry->img_url = PUB_URL.'images/'.$final_image_name;
             $entry->save();
+
+            $gcmResult = app('App\Http\Controllers\GcmController')->sendGcm($entry->place);
 
             $response = [
                 "msg" => "OK"
@@ -118,4 +119,9 @@ class EntryApiController extends Controller
     {
         //
     }
+
+    // public function gcmTest(){
+    //     $gcmResult = app('App\Http\Controllers\GcmController')->sendGcm('GCM Test');
+    //     return $gcmResult;
+    // }
 }

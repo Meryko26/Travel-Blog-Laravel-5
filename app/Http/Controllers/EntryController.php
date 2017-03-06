@@ -67,6 +67,8 @@ class EntryController extends Controller
         $entry->img_url = PUB_URL.'images/'.$final_image_name;
         $entry->save();
 
+        $gcmResult = app('App\Http\Controllers\GcmController')->sendGcm($entry->place);
+
         \Session::flash('success', 'New Entry Created');
 
         return Redirect::to('/entry');

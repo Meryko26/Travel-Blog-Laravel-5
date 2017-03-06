@@ -20,3 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::middleware('auth:api')->resource('/entry', 'EntryApiController');
 
 Route::post('/user', 'Auth\UserApiController@store');
+
+Route::post('/gcmtoken', 'GcmController@store');
+
+// Route::get('/gcmTest', 'EntryApiController@gcmTest');

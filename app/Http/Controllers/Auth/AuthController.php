@@ -49,7 +49,7 @@ class AuthController extends Controller
             'email' => $user->getEmail(),
             'type' => $provider,
             'social_id' => $user->getId(),
-            'password' => ''
+            'password' => bcrypt('random') // to be improved later
         ];
      
         Auth::login(User::firstOrCreate($data));
