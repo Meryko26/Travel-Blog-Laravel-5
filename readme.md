@@ -597,6 +597,29 @@ In view, for HTML email template. Here I just show the HTML email that Admin rec
 </p>
 ```
 
+## Custom Carousel on Welcome Page
+
+Selects a sample of content images for display
+
+Include my custom written js and css: `/js/ruslan_slider.js` and `/css/ruslan_slider.css`.
+
+Also include: `hammer.js` and this jQuery: `http://code.jquery.com/jquery-latest.min.js`
+
+```html
+<div class="slides-holder">
+    <div class="slider"></div>
+</div>
+```
+
+```js
+$slider1.slider
+({
+    title: "Title", //carousel's title
+    fade: 500, // fade transition time
+    pictures: (array of pictures) // eg ["path/to/image/img1.png", "path/to/image/img2.png", ...]
+});     
+```
+
 ## Upload to server
 
 - public folder to server's public folder
