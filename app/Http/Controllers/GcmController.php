@@ -22,6 +22,7 @@ class GcmController extends Controller
                 "msg" => "OK"
             ];
             $statusCode = 200;
+            
         }catch(Exception $e){
             $response = [
                 "error" => "Error"

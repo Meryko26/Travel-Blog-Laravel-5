@@ -30,3 +30,6 @@ Route::group(['middleware' => ['web']], function(){
 	Route::get('auth/{provider}', ['uses' => 'Auth\AuthController@redirectToProvider', 'as' => 'social.login']);
 	Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
 });
+
+
+Route::get('/notification', 'NotificationController@index');

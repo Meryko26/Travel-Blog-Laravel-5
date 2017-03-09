@@ -4,6 +4,22 @@
 
 ![](https://raw.githubusercontent.com/atabegruslan/Travel-Blog-Laravel-5/master/Illustrations/Snapshot.PNG)
 
+## Features
+
+- Laravel MVC CRUD
+
+- User Accounts, Social Signin, RESTful API, Token Auth
+
+- Android & Web FrontEnd
+
+- Contact Form
+
+- Search
+
+- Custom Carousel
+
+- HTML5 Notification, GCM
+
 ## Android App
 
 Download here: http://ruslan-website.com/laravel/travel_blog/apk/TravelBlog.apk

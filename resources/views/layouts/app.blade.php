@@ -38,6 +38,7 @@
     @else
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     @endif
+    <script src="{{ PUB_URL }}js/notification.js?v={{ rand() }}"></script>
     <script src="{{ PUB_URL }}js/app.js?v={{ rand() }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.js"></script>
     <script src="{{ PUB_URL }}js/browser_detection.js?v={{ rand() }}"></script>
