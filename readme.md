@@ -20,6 +20,14 @@
 
 - HTML5 Notification, GCM
 
+## Database 
+
+phpmyadmin, import `travel_blog.sql`
+
+## Download all app images
+
+`./download_all_travel_blog_images.sh`
+
 ## Android App
 
 Download here: http://ruslan-website.com/laravel/travel_blog/apk/TravelBlog.apk
