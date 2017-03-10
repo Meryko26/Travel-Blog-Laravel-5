@@ -34,13 +34,6 @@ Download here: http://ruslan-website.com/laravel/travel_blog/apk/TravelBlog.apk
 
 Source code: https://github.com/atabegruslan/Travel-Blog-Android
 
-Use guest credentials to log in:
-
-| Field | Value |
-| --- | --- |
-| User email | guest@guest.com |
-| Password | gggggg |
-
 ![](https://raw.githubusercontent.com/atabegruslan/Travel-Blog-Android/master/Screenshot.png)
 
 ## API
